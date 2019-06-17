@@ -4,7 +4,7 @@ var showMap = document.querySelector('.map');
 
 if (showMap && showMap.classList.contains('map--faded')) {
   showMap.classList.remove('map--faded');
-};
+}
 
 var houseType = ['palace', 'flat', 'house', 'bungalo'];
 var usersFeature = [];
@@ -41,15 +41,15 @@ var generateRandomHouse = function () {
 var generateUsersFeature = function (i) {
   usersFeature.push(
       {author: {
-          avatar: generateAvatar(i)
-        },
-        offer: {
-          type: generateRandomHouse()
-        },
-        location: {
-          x: generateRandomLocation(locationX.min, locationX.max),
-          y: generateRandomLocation(locationY.min, locationY.max)
-        }
+        avatar: generateAvatar(i)
+      },
+      offer: {
+        type: generateRandomHouse()
+      },
+      location: {
+        x: generateRandomLocation(locationX.min, locationX.max),
+        y: generateRandomLocation(locationY.min, locationY.max)
+      }
       }
   );
   return usersFeature;
@@ -57,7 +57,7 @@ var generateUsersFeature = function (i) {
 
 for (var i = 0; i < 8; i++) {
   generateUsersFeature(i);
-};
+}
 
 console.log(usersFeature);
 
