@@ -3,37 +3,64 @@
 var showMap = document.querySelector('.map');
 showMap.classList.remove('map--faded');
 
-var avatarUser = [];
 var houseType = ['palace', 'flat', 'house', 'bungalo'];
-var locationX;
-var locationY;
+var usersFeature = [];
 
-// генерация рандомныъ координат
-locationX = function () {
-  var min = 0;
-  var max = 1067;
-  return Math.floor(Math.random() * (max - min)) + min;
+
+var locationX = {
+  min: 0,
+  max: 10
+};
+var locationY  = {
+  min: 0,
+  max: 10
 };
 
-locationY = function () {
-  var min = 130;
-  var max = 630;
+// генерация рандомных координат
+var generateRandomLocation = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
-};
+}
 
 // генерация адресов аватаров
 var generateAvatar = function() {
+  var usersAvatar = [];
   for (var i = 1; i <= 8; i++) {
     var avatars = 'img/avatars/user0' + i + '.png';
-    avatarUser.push(avatars);
-  }
-  return avatarUser;
+    usersAvatar.push(avatars);
+  };
+  return usersAvatar[i];
 };
+
+//Выбор случайного типа дома из массива
+var generateRandomHouse = function () {
+  var randomHouse = Math.floor(Math.random() * houseType.length);
+  return houseType[randomHouse];
+}
+
+//Генерация объектов
+
+var generateUsersFeature = function () {
+  usersFeature.push(
+    { author: {
+        avatar: generateAvatar()
+      },
+      offer: {
+        type: generateRandomHouse()
+      },
+      location: {
+        x: generateRandomLocation(locationX.min, locationX.max),
+        y: generateRandomLocation(locationX.min, locationX.max)
+      }
+    }
+  )
+  return usersFeature;
+}
+console.log(generateUsersFeature());
 // работа с шаблоном
 var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
 var renderPin = function () {
   var pinElement = similarPinTemplate.cloneNode(true);
 
-  pinElement.querySelector('.map__pin');00
-}
+  pinElement.querySelector('.map__pin');
+};
