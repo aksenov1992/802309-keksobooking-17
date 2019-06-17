@@ -1,7 +1,10 @@
 'use strict';
 
 var showMap = document.querySelector('.map');
-showMap.classList.remove('map--faded');
+
+if (showMap && showMap.classList.contains('map--faded')) {
+  showMap.classList.remove('map--faded');
+};
 
 var houseType = ['palace', 'flat', 'house', 'bungalo'];
 var usersFeature = [];
@@ -22,13 +25,9 @@ var generateRandomLocation = function (min, max) {
 };
 
 // генерация адресов аватаров
-var generateAvatar = function () {
-  var usersAvatar = [];
-  for (var i = 1; i <= 8; i++) {
-    var avatars = 'img/avatars/user0' + i + '.png';
-    usersAvatar.push(avatars);
-  }
-  return usersAvatar[i];
+var generateAvatar = function (i) {
+  var avatars = 'img/avatars/user0' + (i + 1) + '.png';
+  return avatars;
 };
 
 // Выбор случайного типа дома из массива
@@ -39,10 +38,10 @@ var generateRandomHouse = function () {
 
 //  Генерация объектов
 
-var generateUsersFeature = function () {
+var generateUsersFeature = function (i) {
   usersFeature.push(
       {author: {
-          avatar: generateAvatar()
+          avatar: generateAvatar(i)
         },
         offer: {
           type: generateRandomHouse()
@@ -55,7 +54,13 @@ var generateUsersFeature = function () {
   );
   return usersFeature;
 };
-console.log(generateUsersFeature());
+
+for (var i = 0; i < 8; i++) {
+  generateUsersFeature(i);
+};
+
+console.log(usersFeature);
+
 // работа с шаблоном
 var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
