@@ -25,9 +25,8 @@ var generateRandomLocation = function (min, max) {
 };
 
 // генерация адресов аватаров
-var generateAvatar = function (i) {
-  var avatars = 'img/avatars/user0' + (i + 1) + '.png';
-  return avatars;
+var generateAvatar = function (index) {
+  return 'img/avatars/user0' + (i + 1) + '.png';
 };
 
 // Выбор случайного типа дома из массива
@@ -38,10 +37,10 @@ var generateRandomHouse = function () {
 
 //  Генерация объектов
 
-var generateUsersFeature = function (i) {
+var generateUsersFeature = function (index) {
   usersFeature.push(
       {author: {
-        avatar: generateAvatar(i)
+        avatar: generateAvatar(index)
       },
       offer: {
         type: generateRandomHouse()
