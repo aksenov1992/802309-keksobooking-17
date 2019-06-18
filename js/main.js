@@ -59,4 +59,3 @@ for (var i = 0; i < 8; i++) {
 }
 
 // работа с шаблоном
-var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
