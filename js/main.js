@@ -58,13 +58,5 @@ for (var i = 0; i < 8; i++) {
   generateUsersFeature(i);
 }
 
-console.log(usersFeature);
-
 // работа с шаблоном
 var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
-
-var renderPin = function () {
-  var pinElement = similarPinTemplate.cloneNode(true);
-
-  pinElement.querySelector('.map__pin');
-};
