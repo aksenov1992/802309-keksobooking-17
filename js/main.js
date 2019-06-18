@@ -26,7 +26,7 @@ var generateRandomLocation = function (min, max) {
 
 // генерация адресов аватаров
 var generateAvatar = function (index) {
-  return 'img/avatars/user0' + (i + 1) + '.png';
+  return 'img/avatars/user0' + (index + 1) + '.png';
 };
 
 // Выбор случайного типа дома из массива
