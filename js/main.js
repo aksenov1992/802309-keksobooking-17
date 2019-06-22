@@ -3,7 +3,7 @@
 var showMap = document.querySelector('.map');
 var mapPin = document.querySelector('.map__pin--main');
 var adForm = document.querySelector('.ad-form');
-var fieldsetForm = adForm.querySelectorAll('fieldset')
+var fieldsetForm = adForm.querySelectorAll('fieldset');
 var adressForm = adForm.querySelector('#address');
 var houseType = ['palace', 'flat', 'house', 'bungalo'];
 var usersFeature = [];
@@ -25,19 +25,19 @@ var mapActivation = function () {
   showMap.classList.remove('map--faded');
   for (var i = 0; i < fieldsetForm.length; i++) {
     fieldsetForm[i].removeAttribute('disabled');
-  };
+  }
 };
 
 var locationPin = function () {
   map.addEventListener('mouseup', function (evt) {
-  adressForm.value = evt.offsetX + ', ' + evt.offsetY;
+    adressForm.value = evt.offsetX + ', ' + evt.offsetY;
   });
 };
 
 mapPin.addEventListener('click', function () {
   locationPin();
   mapActivation();
-  });
+    });
 
 
 // генерация рандомных координат
