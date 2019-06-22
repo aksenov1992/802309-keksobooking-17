@@ -1,13 +1,14 @@
 'use strict';
 
 var showMap = document.querySelector('.map');
-
-if (showMap && showMap.classList.contains('map--faded')) {
-  showMap.classList.remove('map--faded');
-}
-
+var mapPin = document.querySelector('.map__pin--main');
+var adForm = document.querySelector('.ad-form');
+var fieldsetForm = adForm.querySelectorAll('fieldset')
+var adressForm = adForm.querySelector('#address');
 var houseType = ['palace', 'flat', 'house', 'bungalo'];
 var usersFeature = [];
+
+var map = document.querySelector('.map__overlay');
 
 
 var locationX = {
@@ -18,6 +19,26 @@ var locationY = {
   min: 0,
   max: 10
 };
+// повесил обработчик на указатель, активировал форму
+var mapActivation = function () {
+  adForm.classList.remove('ad-form--disabled');
+  showMap.classList.remove('map--faded');
+  for (var i = 0; i < fieldsetForm.length; i++) {
+    fieldsetForm[i].removeAttribute('disabled');
+  };
+};
+
+var locationPin = function () {
+  map.addEventListener('mouseup', function (evt) {
+  adressForm.value = evt.offsetX + ', ' + evt.offsetY;
+  });
+};
+
+mapPin.addEventListener('click', function () {
+  locationPin();
+  mapActivation();
+  });
+
 
 // генерация рандомных координат
 var generateRandomLocation = function (min, max) {
@@ -36,7 +57,6 @@ var generateRandomHouse = function () {
 };
 
 //  Генерация объектов
-
 var generateUsersFeature = function (index) {
   usersFeature.push(
       {author: {
