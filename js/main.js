@@ -37,7 +37,7 @@ var locationPin = function () {
 mapPin.addEventListener('click', function () {
   locationPin();
   mapActivation();
-    });
+});
 
 
 // генерация рандомных координат
