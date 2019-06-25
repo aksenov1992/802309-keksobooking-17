@@ -19,7 +19,9 @@ var locationY = {
   min: 0,
   max: 10
 };
-// повесил обработчик на указатель, активировал форму
+// повесил обработчик на указатель, активировал форму, задал нчальное значение адреса.
+adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
+
 var mapActivation = function () {
   adForm.classList.remove('ad-form--disabled');
   showMap.classList.remove('map--faded');
@@ -29,8 +31,8 @@ var mapActivation = function () {
 };
 
 var locationPin = function () {
-  map.addEventListener('mouseup', function (evt) {
-    adressForm.value = evt.offsetX + ', ' + evt.offsetY;
+  mapPin.addEventListener('mouseup', function () {
+    adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
   });
 };
 
