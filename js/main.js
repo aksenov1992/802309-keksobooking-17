@@ -8,9 +8,6 @@ var adressForm = adForm.querySelector('#address');
 var houseType = ['palace', 'flat', 'house', 'bungalo'];
 var usersFeature = [];
 
-var map = document.querySelector('.map__overlay');
-
-
 var locationX = {
   min: 0,
   max: 10
@@ -23,6 +20,7 @@ var locationY = {
 adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
 
 var mapActivation = function () {
+  if (adForm && showMap)
   adForm.classList.remove('ad-form--disabled');
   showMap.classList.remove('map--faded');
   for (var i = 0; i < fieldsetForm.length; i++) {
