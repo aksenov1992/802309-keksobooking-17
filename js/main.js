@@ -20,11 +20,12 @@ var locationY = {
 adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
 
 var mapActivation = function () {
-  if (adForm && showMap)
-  adForm.classList.remove('ad-form--disabled');
-  showMap.classList.remove('map--faded');
-  for (var i = 0; i < fieldsetForm.length; i++) {
-    fieldsetForm[i].removeAttribute('disabled');
+  if (adForm && showMap) {
+    adForm.classList.remove('ad-form--disabled');
+    showMap.classList.remove('map--faded');
+    for (var i = 0; i < fieldsetForm.length; i++) {
+      fieldsetForm[i].removeAttribute('disabled');
+    }
   }
 };
 
