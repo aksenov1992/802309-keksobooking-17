@@ -98,9 +98,9 @@
             <p class="ad-form-header__info">Заполните все обязательные поля, назначьте цену, загрузите фотографии. Придумайте интересное описание. Оно сделает объявление более живым и привлекательным. Получившееся объявление должно давать гостям полное представление о вашем жилье.</p>
           </div>
         </fieldset>
-        <fieldset class="ad-form__element ad-form__element--wide" disabled>
+        <fieldset class="ad-form__element ad-form__element--wide" disabled required>
           <label class="ad-form__label" for="title">Заголовок объявления</label>
-          <input id="title" name="title" type="text" placeholder="Милая, уютная квартирка в центре Токио">
+          <input id="title" name="title" type="text" placeholder="Милая, уютная квартирка в центре Токио" minlength="30" maxlength="100">
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide" disabled>
           <label class="ad-form__label" for="address">Адрес</label>
@@ -115,9 +115,9 @@
             <option value="palace">Дворец</option>
           </select>
         </fieldset>
-        <fieldset class="ad-form__element" disabled>
+        <fieldset class="ad-form__element" disabled required>
           <label class="ad-form__label" for="price">Цена за ночь, руб.</label>
-          <input id="price" name="price" type="number" placeholder="5000">
+          <input id="price" name="price" type="number" placeholder="5000" min="0" max="1000000">
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--time" disabled>
           <label class="ad-form__label" for="timein">Время заезда и выезда</label>
