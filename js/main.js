@@ -62,15 +62,15 @@ timeArrival.addEventListener('change', function () {
 
 timeDeparture.addEventListener('change', function () {
   if (timeDeparture.value === '12:00') {
-    timeArrival.value = '12:00'
+    timeArrival.value = '12:00';
   }
   if (timeDeparture.value === '13:00') {
-    timeArrival.value = '13:00'
+    timeArrival.value = '13:00';
   }
   if (timeDeparture.value === '14:00') {
-    timeArrival.value = '14:00'
+    timeArrival.value = '14:00';
   }
-})
+});
 
 // повесил обработчик на указатель, активировал форму, задал нчальное значение адреса.
 adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
