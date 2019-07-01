@@ -49,8 +49,8 @@ var timeArrival = adForm.querySelector('#timein');
 var timeDeparture = adForm.querySelector('#timeout');
 
 timeArrival.addEventListener('change', function () {
-    timeDeparture.value = timeArrival.value;
-  });
+  timeDeparture.value = timeArrival.value;
+});
 
 timeDeparture.addEventListener('change', function () {
   timeArrival.value = timeDeparture.value;
@@ -69,6 +69,7 @@ var mapActivation = function () {
 };
 
 // Перемещения главного маркера (.map__pin--main) по карте.
+/*
 mapPin.addEventListener('mousedown', function (evt) {
   var tokyoMap = document.querySelector('.map__overlay');
   mapActivation();
@@ -76,7 +77,7 @@ mapPin.addEventListener('mousedown', function (evt) {
     x: evt.clientX,
     y: evt.clientY
   };
-  var onMouseMove = function(moveEvt) {
+  var onMouseMove = function (moveEvt) {
     var shift = {
       x: startPinCoords.x - moveEvt.clientX,
       y: startPinCoords.y - moveEvt.clientY
@@ -84,20 +85,20 @@ mapPin.addEventListener('mousedown', function (evt) {
     startPinCoords = {
       x: moveEvt.clientX,
       y: moveEvt.clientY
-      };
+    };
     var limitPinCoords = {
       top: 130,
       buttom: 630,
       left: tokyoMap.offsetLeft,
       right: tokyoMap.offsetWidth
-    }
+    };
 
     var nowPinCoords = {
       x: mapPin.offsetLeft - shift.x,
       y: mapPin.offsetTop - shift.y,
     };
-    if (nowPinCoords.y <= limitPinCoords.top ) {
-        mapPin.style.top = limitPinCoords.top + 'px';
+    if (nowPinCoords.y <= limitPinCoords.top) {
+      mapPin.style.top = limitPinCoords.top + 'px';
     } else if (nowPinCoords.y >= limitPinCoords.buttom) {
       mapPin.style.top = limitPinCoords.buttom + 'px';
     }
@@ -110,15 +111,15 @@ mapPin.addEventListener('mousedown', function (evt) {
     mapPin.style.left = (mapPin.offsetLeft - shift.x) + 'px';
   };
 
-  var onMouseUp = function (upEvt) {
+  var onMouseUp = function () {
     adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', onMouseUp);
-  }
+  };
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
 });
-
+*/
 
 // генерация рандомных координат
 var generateRandomLocation = function (min, max) {
