@@ -68,7 +68,7 @@ var mapActivation = function () {
   }
 };
 
-// Перемещения главного маркера (.map__pin--main) по карте.
+// Перемещения главного маркера (.map__pin--main) по карте...
 mapPin.addEventListener('mousedown', function (evt) {
   var tokyoMap = document.querySelector('.map__overlay');
   mapActivation();
