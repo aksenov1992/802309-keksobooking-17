@@ -69,6 +69,7 @@ var mapActivation = function () {
 };
 
 // Перемещения главного маркера (.map__pin--main) по карте.
+/*
 mapPin.addEventListener('mousedown', function (evt) {
   var tokyoMap = document.querySelector('.map__overlay');
   mapActivation();
@@ -91,7 +92,6 @@ mapPin.addEventListener('mousedown', function (evt) {
       left: tokyoMap.offsetLeft,
       right: tokyoMap.offsetWidth
     };
-
     var nowPinCoords = {
       x: mapPin.offsetLeft - shift.x,
       y: mapPin.offsetTop - shift.y,
@@ -109,7 +109,6 @@ mapPin.addEventListener('mousedown', function (evt) {
     mapPin.style.top = (mapPin.offsetTop - shift.y) + 'px';
     mapPin.style.left = (mapPin.offsetLeft - shift.x) + 'px';
   };
-
   var onMouseUp = function () {
     adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
     document.removeEventListener('mousemove', onMouseMove);
@@ -118,6 +117,7 @@ mapPin.addEventListener('mousedown', function (evt) {
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
 });
+*/
 
 // генерация рандомных координат
 var generateRandomLocation = function (min, max) {
