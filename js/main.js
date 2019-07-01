@@ -49,32 +49,15 @@ var timeArrival = adForm.querySelector('#timein');
 var timeDeparture = adForm.querySelector('#timeout');
 
 timeArrival.addEventListener('change', function () {
-  if (timeArrival.value === '12:00') {
-    timeDeparture.value = '12:00';
-  }
-  if (timeArrival.value === '13:00') {
-    timeDeparture.value = '13:00';
-  }
-  if (timeArrival.value === '14:00') {
-    timeDeparture.value = '14:00';
-  }
-});
+    timeDeparture.value = timeArrival.value;
+  });
 
 timeDeparture.addEventListener('change', function () {
-  if (timeDeparture.value === '12:00') {
-    timeArrival.value = '12:00';
-  }
-  if (timeDeparture.value === '13:00') {
-    timeArrival.value = '13:00';
-  }
-  if (timeDeparture.value === '14:00') {
-    timeArrival.value = '14:00';
-  }
+  timeArrival.value = timeDeparture.value;
 });
 
 // повесил обработчик на указатель, активировал форму, задал нчальное значение адреса.
 adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
-
 var mapActivation = function () {
   if (adForm && showMap) {
     adForm.classList.remove('ad-form--disabled');
@@ -85,15 +68,55 @@ var mapActivation = function () {
   }
 };
 
-var locationPin = function () {
-  mapPin.addEventListener('mouseup', function () {
-    adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
-  });
-};
-
-mapPin.addEventListener('click', function () {
-  locationPin();
+// Перемещения главного маркера (.map__pin--main) по карте.
+mapPin.addEventListener('mousedown', function (evt) {
+  var tokyoMap = document.querySelector('.map__overlay');
   mapActivation();
+  var startPinCoords = {
+    x: evt.clientX,
+    y: evt.clientY
+  };
+  var onMouseMove = function(moveEvt) {
+    var shift = {
+      x: startPinCoords.x - moveEvt.clientX,
+      y: startPinCoords.y - moveEvt.clientY
+    };
+    startPinCoords = {
+      x: moveEvt.clientX,
+      y: moveEvt.clientY
+      };
+    var limitPinCoords = {
+      top: 130,
+      buttom: 630,
+      left: tokyoMap.offsetLeft,
+      right: tokyoMap.offsetWidth
+    }
+
+    var nowPinCoords = {
+      x: mapPin.offsetLeft - shift.x,
+      y: mapPin.offsetTop - shift.y,
+    };
+    if (nowPinCoords.y <= limitPinCoords.top ) {
+        mapPin.style.top = limitPinCoords.top + 'px';
+    } else if (nowPinCoords.y >= limitPinCoords.buttom) {
+      mapPin.style.top = limitPinCoords.buttom + 'px';
+    }
+    if (nowPinCoords.x >= (limitPinCoords.right - mapPin.offsetWidth)) {
+      mapPin.style.left = limitPinCoords.right - mapPin.offsetWidth + 'px';
+    } else if (nowPinCoords.x <= limitPinCoords.left) {
+      mapPin.style.left = limitPinCoords.left + 'px';
+    }
+    mapPin.style.top = (mapPin.offsetTop - shift.y) + 'px';
+    mapPin.style.left = (mapPin.offsetLeft - shift.x) + 'px';
+  };
+
+  var onMouseUp = function (upEvt) {
+    adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  }
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
 });
 
 
