@@ -5,7 +5,7 @@
   var adForm = document.querySelector('.ad-form');
   var fieldsetForm = adForm.querySelectorAll('fieldset');
   var adressForm = adForm.querySelector('#address');
-    // повесил обработчик на указатель, активировал форму, задал нчальное значение адреса.
+  // повесил обработчик на указатель, активировал форму, задал нчальное значение адреса.
   adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
   var mapActivation = function () {
     if (adForm && showMap) {

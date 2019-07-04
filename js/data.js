@@ -23,7 +23,7 @@
   // Выбор случайного типа дома из массива
   var generateRandomHouse = function () {
     var randomHouse = Math.floor(Math.random() * window.form.houseType.length);
-    return houseType[randomHouse];
+    return window.form.houseType[randomHouse];
   };
 
   //  Генерация объектов
