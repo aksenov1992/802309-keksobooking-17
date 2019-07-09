@@ -28,17 +28,17 @@
   };
 
   typeOfHouse.addEventListener('change', function () {
-      var typeHouseArr = Object.keys(houseTypeAndPrice);
-      for (var i = 0; i < typeHouseArr.length; i++) {
-        if (typeHouseArr[i] === typeOfHouse.value) {
-          var linkObjPrice = eval('houseTypeAndPrice.' + typeHouseArr[i] + '.price');
-          pricePerNight.min = linkObjPrice;
-          pricePerNight.placeholder = pricePerNight.min;
-        }
+    var typeHouseArr = Object.keys(houseTypeAndPrice);
+    for (var i = 0; i < typeHouseArr.length; i++) {
+      if (typeHouseArr[i] === typeOfHouse.value) {
+        var linkObjPrice = eval('houseTypeAndPrice.' + typeHouseArr[i] + '.price');
+        pricePerNight.min = linkObjPrice;
+        pricePerNight.placeholder = pricePerNight.min;
       }
-    });
+    }
+  });
 
-/*  typeOfHouse.addEventListener('change', function () {
+    /*  typeOfHouse.addEventListener('change', function () {
     for (var i = 0; i < houseType.length; i++) {
       if (typeOfHouse.value === houseType[0]) {
         pricePerNight.min = 10000;
