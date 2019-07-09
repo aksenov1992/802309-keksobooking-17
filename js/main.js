@@ -23,6 +23,25 @@ var typeOfHouse = adForm.querySelector('#type');
 var pricePerNight = adForm.querySelector('#price');
 
 // вешаем обработчик на select и пишем условия для минимальной цены от значчения типа дома
+var houseTypeAndPrice = {
+  palace: {
+    name: Дворец,
+    price: 10000
+  },
+  flat: {
+    name: Квартира,
+    price: 1000
+  },
+  house: {
+    name: Дом,
+    price: 5000
+  },
+  bungalo: {
+    name: Бунгало,
+    price: 0
+  },
+};
+console.log(Object.keys(houseTypeAndPrice));
 typeOfHouse.addEventListener('change', function () {
   for (var i = 0; i < houseType.length; i++) {
     if (typeOfHouse.value === houseType[0]) {

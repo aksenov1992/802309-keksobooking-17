@@ -36,7 +36,7 @@
       };
       var limitPinCoords = {
         top: 130,
-        buttom: 630,
+        bottom: 630,
         left: tokyoMap.offsetLeft,
         right: tokyoMap.offsetWidth
       };
@@ -47,8 +47,8 @@
       };
       if (nowPinCoords.y <= limitPinCoords.top) {
         mapPin.style.top = limitPinCoords.top + 'px';
-      } else if (nowPinCoords.y >= limitPinCoords.buttom) {
-        mapPin.style.top = limitPinCoords.buttom + 'px';
+      } else if (nowPinCoords.y >= limitPinCoords.bottom) {
+        mapPin.style.top = limitPinCoords.bottom + 'px';
       }
       if (nowPinCoords.x >= (limitPinCoords.right - mapPin.offsetWidth)) {
         mapPin.style.left = limitPinCoords.right - mapPin.offsetWidth + 'px';
