@@ -50,7 +50,7 @@
     generateUsersFeature(i);
   }
 
-// работа с шаблоном
+  // работа с шаблоном
   var mapPins = document.querySelector('.map__pins');
   var pinTempalte = document.querySelector('#pin').content;
   var renderPin = function (pin) {
@@ -62,8 +62,8 @@
     return pinElement;
   };
   var fragment = document.createDocumentFragment();
-  for (var i = 0; i < usersFeature.length; i++) {
-    fragment.appendChild(renderPin(usersFeature[i]));
+  for (var j = 0; j < usersFeature.length; j++) {
+    fragment.appendChild(renderPin(usersFeature[j]));
   }
   mapPins.appendChild(fragment);
 })();
