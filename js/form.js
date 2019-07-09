@@ -5,7 +5,6 @@
   var pricePerNight = document.querySelector('#price');
   var timeArrival = document.querySelector('#timein');
   var timeDeparture = document.querySelector('#timeout');
-  var houseType = ['palace', 'flat', 'house', 'bungalo'];
 
   // вешаем обработчик на select и пишем условия для минимальной цены от значчения типа дома
   var houseTypeAndPrice = {
