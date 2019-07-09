@@ -24,7 +24,6 @@ var pricePerNight = adForm.querySelector('#price');
 
 // вешаем обработчик на select и пишем условия для минимальной цены от значчения типа дома
 
-console.log(Object.keys(houseTypeAndPrice));
 typeOfHouse.addEventListener('change', function () {
   for (var i = 0; i < houseType.length; i++) {
     if (typeOfHouse.value === houseType[0]) {
