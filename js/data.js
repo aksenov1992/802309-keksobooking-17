@@ -2,9 +2,9 @@
 (function () {
 
   // работа с шаблоном
-  var window.mapPins = document.querySelector('.map__pins');
+  window.mapPins = document.querySelector('.map__pins');
   var pinTempalte = document.querySelector('#pin').content;
-  var window.renderPin = function (pin) {
+  window.renderPin = function (pin) {
     var pinElement = pinTempalte.cloneNode(true);
     pinElement.querySelector('.map__pin').style.left = pin.location.x + 'px';
     pinElement.querySelector('.map__pin').style.top = pin.location.y + 'px';
