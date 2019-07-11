@@ -21,6 +21,14 @@
   mapPin.addEventListener('mousedown', function (evt) {
     var tokyoMap = document.querySelector('.map__overlay');
     mapActivation();
+    window.load(function (pin) {
+
+      var fragment = document.createDocumentFragment();
+      for (var j = 0; j < pin.length; j++) {
+        fragment.appendChild(window.renderPin(pin[j]));
+      }
+      window.mapPins.appendChild(fragment);
+    });
     var startPinCoords = {
       x: evt.clientX,
       y: evt.clientY
