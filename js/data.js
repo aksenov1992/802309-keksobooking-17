@@ -1,54 +1,5 @@
 'use strict';
 (function () {
-  var houseType = ['palace', 'flat', 'house', 'bungalo'];
-
-  var usersFeature = [];
-  var locationX = {
-    min: 10,
-    max: 800
-  };
-  var locationY = {
-    min: 130,
-    max: 620
-  };
-
-  // генерация рандомных координат
-  var generateRandomLocation = function (min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  };
-
-  // генерация адресов аватаров
-  var generateAvatar = function (index) {
-    return 'img/avatars/user0' + (index + 1) + '.png';
-  };
-
-  // Выбор случайного типа дома из массива
-  var generateRandomHouse = function () {
-    var randomHouse = Math.floor(Math.random() * houseType.length);
-    return houseType[randomHouse];
-  };
-
-  //  Генерация объектов
-  var generateUsersFeature = function (index) {
-    usersFeature.push(
-        {author: {
-          avatar: generateAvatar(index)
-        },
-        offer: {
-          type: generateRandomHouse()
-        },
-        location: {
-          x: generateRandomLocation(locationX.min, locationX.max),
-          y: generateRandomLocation(locationY.min, locationY.max)
-        }
-        }
-    );
-    return usersFeature;
-  };
-
-  for (var i = 0; i < 8; i++) {
-    generateUsersFeature(i);
-  }
 
   // работа с шаблоном
   var mapPins = document.querySelector('.map__pins');
@@ -61,9 +12,12 @@
 
     return pinElement;
   };
-  var fragment = document.createDocumentFragment();
-  for (var j = 0; j < usersFeature.length; j++) {
-    fragment.appendChild(renderPin(usersFeature[j]));
-  }
-  mapPins.appendChild(fragment);
+  window.load(function (pin) {
+
+    var fragment = document.createDocumentFragment();
+    for (var j = 0; j < pin.length; j++) {
+      fragment.appendChild(renderPin(pin[j]));
+    }
+    mapPins.appendChild(fragment);
+  });
 })();
