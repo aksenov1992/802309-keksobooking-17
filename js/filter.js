@@ -25,7 +25,7 @@
       return elem.offer.type === housingTypeMap.value;
     }).slice(0, 5);
     var fragment = document.createDocumentFragment();
-    housesTypes.forEach(function(pin) {
+    housesTypes.forEach(function (pin) {
       fragment.appendChild(window.renderPin(pin));
     });
     window.mapPins.appendChild(fragment);
