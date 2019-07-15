@@ -14,7 +14,7 @@
   };
 
   window.advertData = [];
-  window.load ( function (data) {
+  window.load (function (data) {
     window.advertData = data;
   });
 })();
