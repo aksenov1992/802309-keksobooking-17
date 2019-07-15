@@ -21,14 +21,31 @@
   mapPin.addEventListener('mousedown', function (evt) {
     var tokyoMap = document.querySelector('.map__overlay');
     mapActivation();
-    window.load(function (pin) {
+    // window.load(function (pin) {
+    //
+    //   var fivePins = pin.slice(0, 5);
+    //   var fragment = document.createDocumentFragment();
+    //   fivePins.forEach(function(pin) {
+    //     fragment.appendChild(window.renderPin(pin));
+    //   });
+    //   window.mapPins.appendChild(fragment);
+    // });
+    var housingTypeMap = document.querySelector('#housing-type');
+    housingTypeMap.addEventListener('change', function () {
 
-      var fragment = document.createDocumentFragment();
-      for (var j = 0; j < pin.length; j++) {
-        fragment.appendChild(window.renderPin(pin[j]));
-      }
-      window.mapPins.appendChild(fragment);
+      window.load(function (pin) {
+
+        var housesTypes = pin.filter(function (elem) {
+          return elem.offer.type === housingTypeMap.value;
+        }).slice(0, 5);
+        var fragment = document.createDocumentFragment();
+        housesTypes.forEach(function(pin) {
+          fragment.appendChild(window.renderPin(pin));
+        });
+        window.mapPins.appendChild(fragment);
+
     });
+  });
     var startPinCoords = {
       x: evt.clientX,
       y: evt.clientY

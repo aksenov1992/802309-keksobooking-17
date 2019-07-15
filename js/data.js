@@ -12,12 +12,4 @@
 
     return pinElement;
   };
-  // window.load(function (pin) {
-  //
-  //   var fragment = document.createDocumentFragment();
-  //   for (var j = 0; j < pin.length; j++) {
-  //     fragment.appendChild(renderPin(pin[j]));
-  //   }
-  //   window.mapPins.appendChild(fragment);
-  // });
 })();
