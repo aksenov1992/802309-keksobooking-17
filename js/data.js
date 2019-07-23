@@ -17,4 +17,12 @@
   window.load(function (data) {
     window.advertData = data;
   });
-})();
+
+  //шаблон для карточки
+//   var cardTemplate = document.querySelector('#card').content;
+//
+//   window.renderCard = function (card) {
+//     var cardElement = cardTemplate.cloneNode(true);
+//     cardElement.querySelector()
+//   }
+// })();

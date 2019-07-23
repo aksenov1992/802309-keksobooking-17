@@ -21,7 +21,7 @@
   mapPin.addEventListener('mousedown', function (evt) {
     var tokyoMap = document.querySelector('.map__overlay');
     mapActivation();
-    window.renderFivePins();
+    window.renderQuantityPins();
 
     var startPinCoords = {
       x: evt.clientX,
