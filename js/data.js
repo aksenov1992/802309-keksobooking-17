@@ -12,12 +12,17 @@
 
     return pinElement;
   };
-  // window.load(function (pin) {
-  //
-  //   var fragment = document.createDocumentFragment();
-  //   for (var j = 0; j < pin.length; j++) {
-  //     fragment.appendChild(renderPin(pin[j]));
-  //   }
-  //   window.mapPins.appendChild(fragment);
-  // });
-})();
+
+  window.advertData = [];
+  window.load(function (data) {
+    window.advertData = data;
+  });
+
+  //шаблон для карточки
+//   var cardTemplate = document.querySelector('#card').content;
+//
+//   window.renderCard = function (card) {
+//     var cardElement = cardTemplate.cloneNode(true);
+//     cardElement.querySelector()
+//   }
+// })();
