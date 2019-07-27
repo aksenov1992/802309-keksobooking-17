@@ -17,6 +17,34 @@
     }
   };
 
+  // вешаем обработчик на родителя пинов, для делегирования и рендерим карточки.
+
+  window.mapPins.addEventListener('click', function (evt) {
+    var target = evt.target;
+    while (target != window.mapPins) {
+      if (target.alt === 'Метка объявления' ) {
+        var targerLink = target.src.substring(target.src.length - 22);
+
+        var targetCard = window.advertData.filter(function (elem) {
+          return elem.author.avatar === targerLink;
+        });
+        var fragment = document.createDocumentFragment();
+        targetCard.forEach(function (card) {
+          fragment.appendChild(window.renderCard(card));
+        });
+        window.mapPins.appendChild(fragment);
+        return;
+      }
+      //удаляем карточку
+      if (target.className === 'popup__close') {
+      target.offsetParent.remove();
+      return;
+      }
+      target = target.parentNode;
+    }
+  });
+
+
   // Перемещения главного маркера (.map__pin--main) по карте.
   mapPin.addEventListener('mousedown', function (evt) {
     var tokyoMap = document.querySelector('.map__overlay');
