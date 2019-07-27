@@ -21,7 +21,7 @@
 
   window.mapPins.addEventListener('click', function (evt) {
     var target = evt.target;
-    while (target !=== window.mapPins) {
+    while (target !== window.mapPins) {
       if (target.alt === 'Метка объявления') {
         var targerLink = target.src.substring(target.src.length - 22);
 
