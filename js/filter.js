@@ -14,7 +14,6 @@
     var fragment = document.createDocumentFragment();
     fivePins.forEach(function (pin) {
       fragment.appendChild(window.renderPin(pin));
-     // fragment.appendChild(window.renderCard(pin));
     });
     window.mapPins.appendChild(fragment);
   };

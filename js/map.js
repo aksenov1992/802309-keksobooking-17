@@ -21,8 +21,8 @@
 
   window.mapPins.addEventListener('click', function (evt) {
     var target = evt.target;
-    while (target != window.mapPins) {
-      if (target.alt === 'Метка объявления' ) {
+    while (target !=== window.mapPins) {
+      if (target.alt === 'Метка объявления') {
         var targerLink = target.src.substring(target.src.length - 22);
 
         var targetCard = window.advertData.filter(function (elem) {
@@ -35,10 +35,10 @@
         window.mapPins.appendChild(fragment);
         return;
       }
-      //удаляем карточку.
+      // удаляем карточку.
       if (target.className === 'popup__close') {
-      target.offsetParent.remove();
-      return;
+        target.offsetParent.remove();
+        return;
       }
       target = target.parentNode;
     }
