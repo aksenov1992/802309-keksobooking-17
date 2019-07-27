@@ -35,7 +35,7 @@
         window.mapPins.appendChild(fragment);
         return;
       }
-      //удаляем карточку
+      //удаляем карточку.
       if (target.className === 'popup__close') {
       target.offsetParent.remove();
       return;
