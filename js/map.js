@@ -23,11 +23,13 @@
     var target = evt.target;
     while (target !== window.mapPins) {
       if (target.alt === 'Метка объявления') {
-        var targerLink = target.src.substring(target.src.length - 22);
 
         var targetCard = window.advertData.filter(function (elem) {
+          var targerLink = target.src.substring(target.src.length - elem.author.avatar.length);
+
           return elem.author.avatar === targerLink;
         });
+
         var fragment = document.createDocumentFragment();
         targetCard.forEach(function (card) {
           fragment.appendChild(window.renderCard(card));
