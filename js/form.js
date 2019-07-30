@@ -65,7 +65,6 @@
 
     quantityRoomsKeys.forEach(function (quantity) {
       if (quantity === quantityRooms.value) {
-
         optionQuantityGuests.forEach(function (elem) {
           if (!~quantityRoomsAndGuests[quantity].indexOf(elem.value)) {
 

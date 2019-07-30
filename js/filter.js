@@ -15,10 +15,14 @@
   };
 
   var changePin = function () {
-    var housesTypes = window.advertData.filter(function (elem) {
-      return elem.offer.type === housingTypeMap.value;
-    }).slice(0, 5);
-    window.appendItem(housesTypes, window.renderPin);
+    if (housingTypeMap.value == 'any') {
+      window.renderQuantityPins();
+    } else {
+      var housesTypes = window.advertData.filter(function (elem) {
+        return elem.offer.type === housingTypeMap.value;
+      }).slice(0, 5);
+      window.appendItem(housesTypes, window.renderPin);
+    }
   };
   var housingTypeMap = document.querySelector('#housing-type');
 
