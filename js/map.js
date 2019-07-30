@@ -20,7 +20,6 @@
 
   // вешаем обработчик на родителя пинов, для делегирования и рендерим карточки.
   var showCard = function (evt, createCard) {
-    window.mapPins.addEventListener('keydown', onEscPressClose);
 
     createCard = function () {
       var target = evt.target;
@@ -37,27 +36,30 @@
         }
         // удаляем карточку.
         if (target.className === 'popup__close') {
-          target.offsetParent.remove();
+          closeButton();
           return;
         }
         target = target.parentNode;
       }
     };
     createCard();
-    document.addEventListener('keydown', onEscPressClose);
-
   };
 
-  var onEscPressClose = function (target) {
+  var closeButton = function () {
     var buttonClose = document.querySelector('.popup__close');
-
-    if (target.key === 'Escape' && buttonClose) {
-      document.removeEventListener('keydown', onEscPressClose);
+    if (buttonClose) {
       buttonClose.offsetParent.remove();
     }
   };
 
+
   window.mapPins.addEventListener('click', showCard);
+
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape') {
+      closeButton();
+    }
+  });
 
   // Перемещения главного маркера (.map__pin--main) по карте.
   mapPin.addEventListener('mousedown', function (evt) {
