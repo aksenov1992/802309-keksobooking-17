@@ -48,18 +48,16 @@
 
   };
 
-  var onEscPressClose = function(target) {
+  var onEscPressClose = function (target) {
     var buttonClose = document.querySelector('.popup__close');
 
-    if (target.key == 'Escape' &&  buttonClose) {
+    if (target.key === 'Escape' && buttonClose) {
       document.removeEventListener('keydown', onEscPressClose);
-     buttonClose.offsetParent.remove();
+      buttonClose.offsetParent.remove();
     }
   };
 
   window.mapPins.addEventListener('click', showCard);
-
-
 
   // Перемещения главного маркера (.map__pin--main) по карте.
   mapPin.addEventListener('mousedown', function (evt) {

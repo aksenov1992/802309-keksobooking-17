@@ -15,7 +15,7 @@
   };
 
   var changePin = function () {
-    if (housingTypeMap.value == 'any') {
+    if (housingTypeMap.value === 'any') {
       window.renderQuantityPins();
     } else {
       var housesTypes = window.advertData.filter(function (elem) {
