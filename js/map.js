@@ -7,6 +7,7 @@
   var adressForm = adForm.querySelector('#address');
   // повесил обработчик на указатель, активировал форму, задал нчальное значение адреса.
   adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
+
   var mapActivation = function () {
     if (adForm && showMap) {
       adForm.classList.remove('ad-form--disabled');
@@ -18,33 +19,32 @@
   };
 
   // вешаем обработчик на родителя пинов, для делегирования и рендерим карточки.
+  var showCard = function (evt, createCard) {
 
-  window.mapPins.addEventListener('click', function (evt) {
-    var target = evt.target;
-    while (target !== window.mapPins) {
-      if (target.alt === 'Метка объявления') {
+    var createCard = function(evt) {
+      var target = evt.target;
+      while (target !== window.mapPins) {
+        if (target.alt === 'Метка объявления') {
 
-        var targetCard = window.advertData.filter(function (elem) {
-          var targerLink = target.src.substring(target.src.length - elem.author.avatar.length);
+          var targetCard = window.advertData.filter(function (elem) {
+            var targerLink = target.src.substring(target.src.length - elem.author.avatar.length);
 
-          return elem.author.avatar === targerLink;
-        });
-
-        var fragment = document.createDocumentFragment();
-        targetCard.forEach(function (card) {
-          fragment.appendChild(window.renderCard(card));
-        });
-        window.mapPins.appendChild(fragment);
-        return;
+            return elem.author.avatar === targerLink;
+          });
+          window.appendItem(targetCard, window.renderCard);
+        }
+        // удаляем карточку.
+        if (target.className === 'popup__close') {
+          target.offsetParent.remove();
+          return;
+        }
+        target = target.parentNode;
       }
-      // удаляем карточку.
-      if (target.className === 'popup__close') {
-        target.offsetParent.remove();
-        return;
-      }
-      target = target.parentNode;
-    }
-  });
+    };
+    createCard(evt);
+  };
+
+  window.mapPins.addEventListener('click', showCard);
 
 
   // Перемещения главного маркера (.map__pin--main) по карте.

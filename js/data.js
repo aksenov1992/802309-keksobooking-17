@@ -2,6 +2,7 @@
 (function () {
 
   // работа с шаблоном
+  window.fragment = document.createDocumentFragment();
   window.mapPins = document.querySelector('.map__pins');
   var pinTempalte = document.querySelector('#pin').content;
   window.renderPin = function (pin) {
@@ -59,5 +60,12 @@
     });
 
     return cardElement;
+  };
+
+  window.appendItem = function (array, whatRender) {
+    array.forEach(function (element) {
+      window.fragment.appendChild(whatRender(element));
+    });
+    window.mapPins.appendChild(window.fragment);
   };
 })();
