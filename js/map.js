@@ -36,7 +36,7 @@
         }
         // удаляем карточку.
         if (target.className === 'popup__close') {
-          closeButton();
+          closeCard();
           return;
         }
         target = target.parentNode;
@@ -45,7 +45,7 @@
     createCard();
   };
 
-  var closeButton = function () {
+  var closeCard = function () {
     var buttonClose = document.querySelector('.popup__close');
     if (buttonClose) {
       buttonClose.offsetParent.remove();
@@ -57,7 +57,7 @@
 
   document.addEventListener('keydown', function (evt) {
     if (evt.key === 'Escape') {
-      closeButton();
+      closeCard();
     }
   });
 
