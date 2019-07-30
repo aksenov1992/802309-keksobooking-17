@@ -11,24 +11,23 @@
 
   window.renderQuantityPins = function () {
     var fivePins = window.advertData.slice(0, 5);
-    var fragment = document.createDocumentFragment();
-    fivePins.forEach(function (pin) {
-      fragment.appendChild(window.renderPin(pin));
-      fragment.appendChild(window.renderCard(pin));
-    });
-    window.mapPins.appendChild(fragment);
+    window.appendItem(fivePins, window.renderPin);
   };
 
+  var changePin = function () {
+    if (housingTypeMap.value === 'any') {
+      window.renderQuantityPins();
+    } else {
+      var housesTypes = window.advertData.filter(function (elem) {
+        return elem.offer.type === housingTypeMap.value;
+      }).slice(0, 5);
+      window.appendItem(housesTypes, window.renderPin);
+    }
+  };
   var housingTypeMap = document.querySelector('#housing-type');
+
   housingTypeMap.addEventListener('change', function () {
     deletePin();
-    var housesTypes = window.advertData.filter(function (elem) {
-      return elem.offer.type === housingTypeMap.value;
-    }).slice(0, 5);
-    var fragment = document.createDocumentFragment();
-    housesTypes.forEach(function (pin) {
-      fragment.appendChild(window.renderPin(pin));
-    });
-    window.mapPins.appendChild(fragment);
+    changePin();
   });
 })();

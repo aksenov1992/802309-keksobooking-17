@@ -5,6 +5,8 @@
   var pricePerNight = document.querySelector('#price');
   var timeArrival = document.querySelector('#timein');
   var timeDeparture = document.querySelector('#timeout');
+  var quantityRooms = document.querySelector('#room_number');
+  var quantityGuests = document.querySelector('#capacity');
 
   // вешаем обработчик на select и пишем условия для минимальной цены от значчения типа дома
   var houseTypeAndPrice = {
@@ -26,7 +28,7 @@
     },
   };
 
-  typeOfHouse.addEventListener('change', function () {
+  var changePricePerNight = function () {
     var typeHouseArr = Object.keys(houseTypeAndPrice);
     for (var i = 0; i < typeHouseArr.length; i++) {
       if (typeHouseArr[i] === typeOfHouse.value) {
@@ -35,7 +37,9 @@
         pricePerNight.placeholder = pricePerNight.min;
       }
     }
-  });
+  };
+
+  typeOfHouse.addEventListener('change', changePricePerNight);
 
   // Поля «Время заезда» и «Время выезда» синхронизированы
 
@@ -46,5 +50,33 @@
   timeDeparture.addEventListener('change', function () {
     timeArrival.value = timeDeparture.value;
   });
+
+  // соответствия количества гостей с количеством комнат.
+  var quantityRoomsAndGuests = {
+    '1': ['1'],
+    '2': ['1', '2'],
+    '3': ['1', '2', '3'],
+    '100': ['0']
+  };
+
+  var changeQuantityRooms = function () {
+    var optionQuantityGuests = quantityGuests.querySelectorAll('option');
+    var quantityRoomsKeys = Object.keys(quantityRoomsAndGuests);
+
+    quantityRoomsKeys.forEach(function (quantity) {
+      if (quantity === quantityRooms.value) {
+        optionQuantityGuests.forEach(function (elem) {
+          if (!~quantityRoomsAndGuests[quantity].indexOf(elem.value)) {
+
+            elem.setAttribute('disabled', true);
+          } else {
+            elem.removeAttribute('disabled');
+          }
+        });
+      }
+    });
+  };
+
+  quantityRooms.addEventListener('change', changeQuantityRooms);
 
 })();

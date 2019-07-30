@@ -7,6 +7,7 @@
   var adressForm = adForm.querySelector('#address');
   // повесил обработчик на указатель, активировал форму, задал нчальное значение адреса.
   adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
+
   var mapActivation = function () {
     if (adForm && showMap) {
       adForm.classList.remove('ad-form--disabled');
@@ -16,6 +17,49 @@
       }
     }
   };
+
+  // вешаем обработчик на родителя пинов, для делегирования и рендерим карточки.
+  var showCard = function (evt, createCard) {
+
+    createCard = function () {
+      var target = evt.target;
+      while (target !== window.mapPins) {
+        if (target.alt === 'Метка объявления') {
+
+          var targetCard = window.advertData.filter(function (elem) {
+            var targerLink = target.src.substring(target.src.length - elem.author.avatar.length);
+
+            return elem.author.avatar === targerLink;
+          });
+          window.appendItem(targetCard, window.renderCard);
+
+        }
+        // удаляем карточку.
+        if (target.className === 'popup__close') {
+          closeCard();
+          return;
+        }
+        target = target.parentNode;
+      }
+    };
+    createCard();
+  };
+
+  var closeCard = function () {
+    var buttonClose = document.querySelector('.popup__close');
+    if (buttonClose) {
+      buttonClose.offsetParent.remove();
+    }
+  };
+
+
+  window.mapPins.addEventListener('click', showCard);
+
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape') {
+      closeCard();
+    }
+  });
 
   // Перемещения главного маркера (.map__pin--main) по карте.
   mapPin.addEventListener('mousedown', function (evt) {
