@@ -21,7 +21,7 @@
   // вешаем обработчик на родителя пинов, для делегирования и рендерим карточки.
   var showCard = function (evt, createCard) {
 
-    var createCard = function(evt) {
+    createCard = function () {
       var target = evt.target;
       while (target !== window.mapPins) {
         if (target.alt === 'Метка объявления') {
@@ -41,7 +41,7 @@
         target = target.parentNode;
       }
     };
-    createCard(evt);
+    createCard();
   };
 
   window.mapPins.addEventListener('click', showCard);
