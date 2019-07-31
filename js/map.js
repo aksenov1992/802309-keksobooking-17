@@ -142,7 +142,7 @@
 
   window.form.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    window.upload(new FormData(window.form), function (response) {
+    window.upload(new FormData(window.form), function () {
       window.renderSuccessMessage();
       window.form.reset();
       window.deletePin();
