@@ -9,10 +9,6 @@
 
     xhr.addEventListener('load', function () {
       if (xhr.status === 200) {
-        window.renderSuccessMessage();
-        window.form.reset();
-        window.deletePin();
-        window.giveDefaultCoords();
         onSuccess(xhr.response);
       } else {
         window.renderErrorMessage();

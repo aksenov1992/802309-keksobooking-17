@@ -64,7 +64,7 @@
     mapActivation();
     window.renderQuantityPins();
     mapPin.removeEventListener('click', activateMap);
-  }
+  };
 
   mapPin.addEventListener('click', activateMap);
 
@@ -86,7 +86,7 @@
     window.form.reset();
     window.deletePin();
     window.giveDefaultCoords();
-  })
+  });
 
   // Перемещения главного маркера (.map__pin--main) по карте.
   mapPin.addEventListener('mousedown', function (evt) {
@@ -143,6 +143,10 @@
   window.form.addEventListener('submit', function (evt) {
     evt.preventDefault();
     window.upload(new FormData(window.form), function (response) {
+      window.renderSuccessMessage();
+      window.form.reset();
+      window.deletePin();
+      window.giveDefaultCoords();
     });
   });
 
