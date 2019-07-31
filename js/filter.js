@@ -1,7 +1,7 @@
 'use strict';
 (function () {
-  var deletePin = function () {
-    var pin = document.querySelectorAll('.map__pin');
+  window.deletePin = function () {
+    var pin = document.querySelectorAll('.map__pin:not(.map__pin--main)');
     if (pin) {
       pin.forEach(function (el) {
         window.mapPins.removeChild(el);
@@ -27,7 +27,7 @@
   var housingTypeMap = document.querySelector('#housing-type');
 
   housingTypeMap.addEventListener('change', function () {
-    deletePin();
+    window.deletePin();
     changePin();
   });
 })();

@@ -79,4 +79,5 @@
 
   quantityRooms.addEventListener('change', changeQuantityRooms);
 
+
 })();

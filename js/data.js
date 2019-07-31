@@ -61,6 +61,40 @@
 
     return cardElement;
   };
+  // шаблон для удачной отправки формы
+  var successMessageTemplate = document.querySelector('#success').content;
+
+  window.renderSuccessMessage = function () {
+    var successElement = successMessageTemplate.cloneNode(true);
+    successElement.querySelector('.success').id = 'message';
+    document.querySelector('main').appendChild(successElement);
+
+    mainPage.addEventListener('click', closePopUp);
+    mainPage.addEventListener('keydown', closePopUp);
+  };
+  // шаблон для не удачной отправки формы
+  var errorMessageTemplate = document.querySelector('#error').content;
+
+  window.renderErrorMessage = function () {
+    var errorElement = errorMessageTemplate.cloneNode(true);
+    errorElement.querySelector('.error').id = 'message';
+    document.querySelector('main').appendChild(errorElement);
+
+    mainPage.addEventListener('click', closePopUp);
+    mainPage.addEventListener('keydown', closePopUp);
+  };
+
+  // функкция удаления сообщения
+  var mainPage = document.querySelector('main');
+
+  var closePopUp = function () {
+    var message = document.querySelector('#message');
+    if (message) {
+      message.remove();
+      mainPage.removeEventListener('click', closePopUp);
+      mainPage.removeEventListener('keydown', closePopUp);
+    }
+  };
 
   window.appendItem = function (array, whatRender) {
     array.forEach(function (element) {

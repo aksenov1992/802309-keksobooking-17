@@ -1,17 +1,17 @@
 'use strict';
 (function () {
-  var showMap = document.querySelector('.map');
+  var map = document.querySelector('.map');
   var mapPin = document.querySelector('.map__pin--main');
-  var adForm = document.querySelector('.ad-form');
-  var fieldsetForm = adForm.querySelectorAll('fieldset');
-  var adressForm = adForm.querySelector('#address');
+  window.form = document.querySelector('.ad-form');
+  var fieldsetForm = window.form.querySelectorAll('fieldset');
+  var adressForm = window.form.querySelector('#address');
   // повесил обработчик на указатель, активировал форму, задал нчальное значение адреса.
   adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
 
   var mapActivation = function () {
-    if (adForm && showMap) {
-      adForm.classList.remove('ad-form--disabled');
-      showMap.classList.remove('map--faded');
+    if (window.form && map) {
+      window.form.classList.remove('ad-form--disabled');
+      map.classList.remove('map--faded');
       for (var i = 0; i < fieldsetForm.length; i++) {
         fieldsetForm[i].removeAttribute('disabled');
       }
@@ -52,7 +52,6 @@
     }
   };
 
-
   window.mapPins.addEventListener('click', showCard);
 
   document.addEventListener('keydown', function (evt) {
@@ -60,12 +59,39 @@
       closeCard();
     }
   });
+  // функция для актвиации карты.
+  var activateMap = function () {
+    mapActivation();
+    window.renderQuantityPins();
+    mapPin.removeEventListener('click', activateMap);
+  }
+
+  mapPin.addEventListener('click', activateMap);
+
+
+  // функция дефолтного значения адреса главного пина
+
+  window.giveDefaultCoords = function () {
+    mapPin.style.left = '570px';
+    mapPin.style.top = '375px';
+    adressForm.value = mapPin.offsetLeft + ', ' + mapPin.offsetTop;
+
+  };
+
+  // обработчик для кнопки очиситить
+
+  var resetButton = document.querySelector('.ad-form__reset');
+  resetButton.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    window.form.reset();
+    window.deletePin();
+    window.giveDefaultCoords();
+  })
 
   // Перемещения главного маркера (.map__pin--main) по карте.
   mapPin.addEventListener('mousedown', function (evt) {
     var tokyoMap = document.querySelector('.map__overlay');
-    mapActivation();
-    window.renderQuantityPins();
+
 
     var startPinCoords = {
       x: evt.clientX,
@@ -113,4 +139,11 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+  window.form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.upload(new FormData(window.form), function (response) {
+    });
+  });
+
 })();
