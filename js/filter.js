@@ -9,13 +9,6 @@
     }
   };
 
-  // window.renderQuantityPins = function () {
-  //   var quantityPins = window.advertData.slice(0, 5);
-  //   window.appendItem(quantityPins, window.renderPin);
-  // };
-
-
-
   // работа с фильтрами
   var mapFilters = document.querySelector('.map__filters');
   var mapFiltersSelected = mapFilters.querySelectorAll('select');
@@ -31,9 +24,9 @@
   var getFilteredValue = function (evt) {
     var target = evt.target;
 
-    mapFiltersSelected.forEach(function (evt) {
-      if (target.id === evt.id) {
-          valueFilters[target.id.slice('housing-'.length)] = target.value;
+    mapFiltersSelected.forEach(function (ev) {
+      if (target.id === ev.id) {
+        valueFilters[target.id.slice('housing-'.length)] = target.value;
       }
     });
 
@@ -43,7 +36,6 @@
     } else if (target.tagName === 'INPUT') {
       valueFilters.features.splice(valueFilters.features.indexOf(target.value), 1);
     }
-    console.log(valueFilters);
     var actualPinsArray = getActualPins(valueFilters);
     window.deletePin();
     window.appendItem(actualPinsArray.slice(0, 5), window.renderPin);
@@ -85,8 +77,8 @@
       var elementGuests = '';
       if (element.offer.guests === parseInt(actualFilter.guests, 10)) {
       elementGuests = element.offer.guests;
-    } else if (actualFilter.guests === 'any') {
-        elementGuests = true;
+      } else if (actualFilter.guests === 'any') {
+          elementGuests = true;
       }
 
       var itemFeatures = '';
@@ -98,7 +90,7 @@
         });
       } else {
           itemFeatures = true;
-       }
+      }
 
       if (elementType && elementPrice === actualFilter.price && elementRooms && elementGuests && itemFeatures) {
         filteredPins.push(element);
