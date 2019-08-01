@@ -22,25 +22,23 @@
   var showCard = function (evt, createCard) {
 
     createCard = function () {
-      var target = evt.target;
-      while (target !== window.mapPins) {
-        if (target.alt === 'Метка объявления') {
+      var button = evt.target.closest('.map__pin');
 
-          var targetCard = window.advertData.filter(function (elem) {
-            var targerLink = target.src.substring(target.src.length - elem.author.avatar.length);
-
-            return elem.author.avatar === targerLink;
-          });
-          window.appendItem(targetCard, window.renderCard);
-
-        }
-        // удаляем карточку.
-        if (target.className === 'popup__close') {
-          closeCard();
-          return;
-        }
-        target = target.parentNode;
+      if (!button) {
+        return;
       }
+      if (button.contains(mapPin)) {
+        return;
+      }
+      if (button) {
+        var targetCard = window.advertData.filter(function (elem) {
+          var targetButton = button.offsetTop;
+
+          return elem.location.y === targetButton;
+        });
+        window.appendItem(targetCard, window.renderCard);
+      }
+
     };
     createCard();
   };
@@ -52,6 +50,7 @@
     }
   };
 
+  window.mapPins.addEventListener('click', closeCard);
   window.mapPins.addEventListener('click', showCard);
 
   document.addEventListener('keydown', function (evt) {
@@ -62,7 +61,7 @@
   // функция для актвиации карты.
   var activateMap = function () {
     mapActivation();
-    window.renderQuantityPins();
+    window.appendItem(window.advertData, window.renderPin);
     mapPin.removeEventListener('click', activateMap);
   };
 

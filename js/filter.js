@@ -9,39 +9,17 @@
     }
   };
 
-  window.renderQuantityPins = function () {
-    var fivePins = window.advertData.slice(0, 5);
-    window.appendItem(fivePins, window.renderPin);
-  };
+  // window.renderQuantityPins = function () {
+  //   var quantityPins = window.advertData.slice(0, 5);
+  //   window.appendItem(quantityPins, window.renderPin);
+  // };
 
-  var changePin = function () {
-    if (housingTypeMap.value === 'any') {
-      window.renderQuantityPins();
-    } else {
-      var housesTypes = window.advertData.filter(function (elem) {
-        return elem.offer.type === housingTypeMap.value;
-      }).slice(0, 5);
-      window.appendItem(housesTypes, window.renderPin);
-    }
-  };
-  // housingTypeMap.addEventListener('change', function () {
-  //   window.deletePin();
-  //   changePin();
-  // });
+
+
   // работа с фильтрами
   var mapFilters = document.querySelector('.map__filters');
-  var housingTypeMap = document.querySelector('#housing-type');
-  var housingPrice = document.querySelector('#housing-price');
-  var housingRooms = document.querySelector('#housing-rooms');
-  var housingGuests = document.querySelector('#housing-guests');
-  var filterWifi = document.querySelector('#filter-wifi');
-  var filterDishwasher = document.querySelector('#filter-dishwasher');
-  var filterParking = document.querySelector('#filter-parking');
-  var filterWasher = document.querySelector('#filter-washer');
-  var filterElevator = document.querySelector('#filter-elevator');
-  var filterConditioner = document.querySelector('#filter-conditioner');
-
   var mapFiltersSelected = mapFilters.querySelectorAll('select');
+
   var valueFilters = {
     guests: 'any',
     price: 'any',
@@ -68,7 +46,7 @@
     console.log(valueFilters);
     var actualPinsArray = getActualPins(valueFilters);
     window.deletePin();
-    window.appendItem(actualPinsArray, window.renderPin);
+    window.appendItem(actualPinsArray.slice(0, 5), window.renderPin);
   };
 
   var getActualPins = function (actualFilter) {
@@ -84,7 +62,10 @@
       }
 
       var elementPrice = parseInt(element.offer.price, 10);
-      if (elementPrice <= 10000) {
+      if (actualFilter.price === 'any') {
+        elementPrice = 'any';
+
+      } else if (elementPrice <= 10000) {
         elementPrice = 'low';
 
       } else if (elementPrice >= 50000) {
@@ -113,18 +94,18 @@
         actualFilter.features.forEach(function (elem) {
           if (element.offer.features.indexOf(elem) !== -1) {
             itemFeatures = element.offer.features;
-          } else {
-            itemFeatures = true;
           }
         });
-      }
+      } else {
+          itemFeatures = true;
+       }
 
       if (elementType && elementPrice === actualFilter.price && elementRooms && elementGuests && itemFeatures) {
         filteredPins.push(element);
       }
     });
     return filteredPins;
-  }
+  };
 
   mapFilters.addEventListener('change', getFilteredValue);
 
