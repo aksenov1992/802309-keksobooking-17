@@ -61,7 +61,7 @@
   // функция для актвиации карты.
   var activateMap = function () {
     mapActivation();
-    window.appendItem(window.advertData, window.renderPin);
+    window.appendItem(window.advertData.slice(0, 5), window.renderPin);
     mapPin.removeEventListener('click', activateMap);
   };
 

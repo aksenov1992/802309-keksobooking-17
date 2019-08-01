@@ -76,9 +76,9 @@
 
       var elementGuests = '';
       if (element.offer.guests === parseInt(actualFilter.guests, 10)) {
-      elementGuests = element.offer.guests;
+        elementGuests = element.offer.guests;
       } else if (actualFilter.guests === 'any') {
-          elementGuests = true;
+        elementGuests = true;
       }
 
       var itemFeatures = '';
@@ -89,7 +89,7 @@
           }
         });
       } else {
-          itemFeatures = true;
+        itemFeatures = true;
       }
 
       if (elementType && elementPrice === actualFilter.price && elementRooms && elementGuests && itemFeatures) {
