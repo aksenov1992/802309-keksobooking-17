@@ -18,7 +18,6 @@
   window.load(function (data) {
     window.advertData = data;
   });
-
   // шаблон для карточки
   var cardTemplate = document.querySelector('#card').content;
 
